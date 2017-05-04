@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <title>Shout Box</title>
   <style>#root .loading { position: fixed; top: 0; right: 0; left: 0; bottom: 0; display: flex; justify-content: center; align-items: center; }</style>
+  <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    // TODO: Replace with your project's customized code snippet
+    var config = {
+      apiKey: "<API_KEY>",
+      authDomain: "<PROJECT_ID>.firebaseapp.com",
+      databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+      storageBucket: "<BUCKET>.appspot.com",
+      messagingSenderId: "<SENDER_ID>",
+    };
+    firebase.initializeApp(config);
+  </script>
+
 </head>
 <body>
   <!-- This HTML file is a template. You can add webfonts, meta tags,
