@@ -19,27 +19,32 @@ class App extends Component {
     })
   }
 
-  addMessage = (message) => {
-    db.ref('messages').push().set({ message, person: 'turtle' })
+  addMessage = (message, person) => {
+    console.log(message)
+    db.ref('messages').push().set({ message, person: person })
   }
 
   _submit = (event) => {
     event.preventDefault()
     const input = this.refs.textInput
-    console.log(input.value)
-    this.addMessage(input.value)
+    const person = this.refs.personName
+    this.addMessage(input.value, person.value)
     input.value = ''
   }
 
   render () {
-    return <div className='hello' >
-      <main>
-        <textarea name='textarea' rows='10' cols='50' className='' />
-        <form onSubmit={this._submit} >
-          <input type='text' ref='textInput' />
-          <input type='text' ref='personName' />
-        </form>
-      </main>
+    return <div className='shoutbox' >
+      <ul className='messages'>
+        {_.map(this.state.messages, ({ person, message }, key) =>
+          <li key={key}>
+            <span>{person + ': '}{message}</span>
+          </li>
+        )}
+      </ul>
+      <form onSubmit={this._submit}>
+        <div><input type='text' name='message' ref='personName' /> <label>Name</label> </div>
+        <div><input type='text' name='message' ref='textInput' /> <button type='submit'>Send Message</button></div>
+      </form>
     </div>
   }
 }
